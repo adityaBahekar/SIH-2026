@@ -1,0 +1,12 @@
+{
+  "name": "sih-artisan-ai-manager",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Smart India Hackathon MVP for AI-assisted artisan product cataloging and pricing.",
+  "scripts": {
+    "server:dev": "npm --prefix server run dev",
+    "server:build": "npm --prefix server run build",
+    "server:test": "npm --prefix server run test",
+    "mobile:start": "npm --prefix mobile run start"
+  }
+}
