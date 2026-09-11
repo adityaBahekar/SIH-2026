@@ -6,6 +6,12 @@ export interface ProductDocument extends Document {
   category: string;
   material: string | null;
   color: string | null;
+  dimensions: string | null;
+  weight: string | null;
+  origin: string | null;
+  technique: string | null;
+  careInstructions: string | null;
+  stock: number;
   descriptionEn: string;
   descriptionHi: string;
   keywords: string[];
@@ -32,6 +38,12 @@ const productSchema = new Schema<ProductDocument>({
   category: { type: String, required: true, trim: true, maxlength: 100 },
   material: { type: String, default: null, trim: true, maxlength: 100 },
   color: { type: String, default: null, trim: true, maxlength: 100 },
+  dimensions: { type: String, default: null, trim: true, maxlength: 100 },
+  weight: { type: String, default: null, trim: true, maxlength: 100 },
+  origin: { type: String, default: null, trim: true, maxlength: 150 },
+  technique: { type: String, default: null, trim: true, maxlength: 150 },
+  careInstructions: { type: String, default: null, trim: true, maxlength: 500 },
+  stock: { type: Number, default: 5, min: 0 },
   descriptionEn: { type: String, required: true, trim: true, maxlength: 1000 },
   descriptionHi: { type: String, required: true, trim: true, maxlength: 1000 },
   keywords: { type: [String], required: true, default: [] },

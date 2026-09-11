@@ -132,7 +132,7 @@ export default function App() {
           }}
         />
       ) : screen === 'products' ? (
-        <ProductsScreen onBack={() => setScreen('home')} />
+        <ProductsScreen onBack={() => setScreen('home')} onCreateNew={handleStartCreate} />
       ) : null}
       <StatusBar style="auto" />
     </SafeAreaView>

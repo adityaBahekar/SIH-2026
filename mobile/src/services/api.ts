@@ -18,6 +18,12 @@ export interface CatalogResponse {
   category: string;
   material: string | null;
   color: string | null;
+  dimensions: string | null;
+  weight: string | null;
+  origin: string | null;
+  technique: string | null;
+  careInstructions: string | null;
+  stock: number;
   descriptionEn: string;
   descriptionHi: string;
   keywords: string[];
@@ -36,6 +42,41 @@ export interface PricingResponse {
   maxPrice: number;
   explanation: string[];
 }
+
+export interface Product {
+  id: string;
+  title: string;
+  category: string;
+  material: string | null;
+  color: string | null;
+  dimensions: string | null;
+  weight: string | null;
+  origin: string | null;
+  technique: string | null;
+  careInstructions: string | null;
+  stock: number;
+  descriptionEn: string;
+  descriptionHi: string;
+  keywords: string[];
+  imageOriginalUrl: string;
+  imageEnhancedUrl: string;
+  imagePublicId: string;
+  materialCost: number;
+  labourCost: number;
+  packagingCost: number;
+  totalCost: number;
+  marginPercentage: number;
+  recommendedPrice: number;
+  minPrice: number;
+  maxPrice: number;
+  pricingExplanation: string[];
+  aiConfidence: number | null;
+  status: 'draft' | 'published';
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type ProductSummary = Product;
 
 const request = async <T extends object>(path: string, options?: RequestInit): Promise<T> => {
   const response = await fetch(`${API_URL}${path}`, {
@@ -60,16 +101,6 @@ export interface EnhancedImageResponse {
   enhancedUrl: string;
   publicId: string;
   demoMode: boolean;
-}
-
-export interface ProductSummary {
-  id: string;
-  title: string;
-  category: string;
-  material: string | null;
-  imageEnhancedUrl: string;
-  recommendedPrice: number;
-  status: 'draft' | 'published';
 }
 
 export const uploadImage = async (uri: string): Promise<EnhancedImageResponse> => {
@@ -127,6 +158,24 @@ export const saveProduct = (input: Record<string, unknown>): Promise<{ id: strin
   body: JSON.stringify(input),
 });
 
-export const listProducts = (): Promise<ProductSummary[]> => request('/products', {
+export const listProducts = (): Promise<Product[]> => request('/products', {
   method: 'GET',
 });
+
+export const getProduct = (id: string): Promise<Product> => request(`/products/${id}`, {
+  method: 'GET',
+});
+
+export const updateProduct = (id: string, input: Partial<Product>): Promise<Product> => request(`/products/${id}`, {
+  method: 'PUT',
+  body: JSON.stringify(input),
+});
+
+export const deleteProduct = async (id: string): Promise<void> => {
+  const response = await fetch(`${API_URL}/products/${id}`, {
+    method: 'DELETE',
+  });
+  if (!response.ok && response.status !== 204) {
+    throw new Error('Could not delete product.');
+  }
+};

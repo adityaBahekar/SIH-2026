@@ -22,13 +22,7 @@ if (isConfigured()) {
 const buildEcommerceUrl = (publicId: string): string =>
   cloudinary.url(publicId, {
     secure: true,
-    transformation: [
-      { effect: 'background_removal' },
-      { width: 1200, height: 1200, crop: 'pad', background: 'white' },
-      { effect: 'improve:50' },
-      { effect: 'viesus_correct' },
-      { quality: 'auto:best', fetch_format: 'jpg' },
-    ],
+    transformation: [{ effect: 'background_removal' }],
   });
 
 export const uploadAndEnhanceImage = async (
@@ -65,11 +59,9 @@ export const uploadAndEnhanceImage = async (
       stream.end(buffer);
     });
 
-    const enhancedUrl = buildEcommerceUrl(uploaded.public_id);
-
     return {
       originalUrl: uploaded.secure_url,
-      enhancedUrl,
+      enhancedUrl: buildEcommerceUrl(uploaded.public_id),
       publicId: uploaded.public_id,
       demoMode: false,
     };
