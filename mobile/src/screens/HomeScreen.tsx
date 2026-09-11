@@ -40,7 +40,10 @@ export function HomeScreen({ onCreateProduct, onViewProducts }: HomeScreenProps)
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <View style={styles.brandRow}>
         <View style={styles.brandDot} />
-        <Text style={styles.brandLabel}>ARTISAN AI BUSINESS MANAGER</Text>
+        <Text style={styles.brandName}>PRAGATI</Text>
+        <View style={styles.brandPill}>
+          <Text style={styles.brandPillText}>प्रगति · Artisan AI</Text>
+        </View>
       </View>
 
       <Text style={styles.title}>Turn your craft{'\n'}into a story{'\n'}people can find.</Text>
@@ -114,9 +117,11 @@ export function HomeScreen({ onCreateProduct, onViewProducts }: HomeScreenProps)
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: '#FAF7F2' },
   content: { paddingHorizontal: 22, paddingTop: 50, paddingBottom: 50 },
-  brandRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 18 },
-  brandDot: { width: 9, height: 9, borderRadius: 5, backgroundColor: '#C85A32' },
-  brandLabel: { color: '#7E7A71', fontSize: 12, fontWeight: '800', letterSpacing: 1.2 },
+  brandRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 18 },
+  brandDot: { width: 10, height: 10, borderRadius: 5, backgroundColor: '#C85A32' },
+  brandName: { color: '#1E3A2F', fontSize: 18, fontWeight: '900', letterSpacing: 1.8 },
+  brandPill: { backgroundColor: '#EDE5D8', paddingHorizontal: 9, paddingVertical: 4, borderRadius: 8 },
+  brandPillText: { color: '#7E7A71', fontSize: 11, fontWeight: '800' },
   title: { color: '#1E3A2F', fontSize: 34, lineHeight: 42, fontWeight: '900' },
   subtitle: { color: '#6F736D', fontSize: 15, lineHeight: 23, marginTop: 14 },
   statsCard: { backgroundColor: '#FFFDF9', borderRadius: 18, borderWidth: 1, borderColor: '#E5DED4', overflow: 'hidden', marginTop: 22 },

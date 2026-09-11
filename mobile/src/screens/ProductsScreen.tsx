@@ -132,7 +132,7 @@ export function ProductsScreen({ onBack, onCreateNew }: ProductsScreenProps) {
 
         <View style={styles.headerRow}>
           <View>
-            <Text style={styles.kicker}>ARTISAN INVENTORY</Text>
+            <Text style={styles.kicker}>PRAGATI · ARTISAN INVENTORY</Text>
             <Text style={styles.title}>Your Catalog</Text>
           </View>
           <View style={styles.countBadge}>
