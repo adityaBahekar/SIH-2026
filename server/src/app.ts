@@ -13,7 +13,7 @@ export const app = express();
 
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 app.use(cors({
-  origin: env.NODE_ENV === 'production' ? env.CLIENT_ORIGIN : true,
+  origin: env.CLIENT_ORIGIN === '*' ? true : (env.NODE_ENV === 'production' ? env.CLIENT_ORIGIN : true),
   credentials: true,
 }));
 app.use(express.json({ limit: '50mb' }));
